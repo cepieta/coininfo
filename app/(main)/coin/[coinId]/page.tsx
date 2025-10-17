@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import useSWR from 'swr';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { getCoinDetail, getCoinOHLC } from '@/services/coingecko';
 import { CoinDetail, ChartDataPoint } from '@/types';
 
@@ -54,7 +55,7 @@ const CoinDetailPage = () => {
   return (
     <div>
       <div className="flex items-center mb-6">
-        <img src={coin.image} alt={coin.name} className="w-12 h-12 mr-4" />
+        <Image src={coin.image} alt={coin.name} width={48} height={48} className="mr-4" />
         <div>
           <h1 className="text-4xl font-bold">{coin.name}</h1>
           <p className="text-xl text-gray-400">{coin.symbol.toUpperCase()}</p>

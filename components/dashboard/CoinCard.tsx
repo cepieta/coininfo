@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { CoinSummary } from '@/types';
 import { useWatchlist } from '@/hooks/useWatchlist';
 
@@ -21,7 +22,7 @@ const CoinCard = ({ coin }: CoinCardProps) => {
     <Link href={`/coin/${coin.id}`} className="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors">
       <div className="flex items-start justify-between">
         <div className="flex items-center mb-2">
-          <img src={coin.image} alt={coin.name} className="w-8 h-8 mr-3" />
+          <Image src={coin.image} alt={coin.name} width={32} height={32} className="mr-3" />
           <div>
             <h3 className="font-bold">{coin.name}</h3>
             <p className="text-sm text-gray-400">{coin.symbol.toUpperCase()}</p>

@@ -20,8 +20,11 @@ export const fetcher = async <T>(url: string): Promise<T> => {
 };
 
 // Specific API functions
-export const getCoinsMarkets = (currency: string = 'usd', page: number = 1): Promise<CoinSummary[]> => {
-  const url = `${API_BASE_URL}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=${page}&sparkline=false`;
+export const getCoinsMarkets = (currency: string = 'usd', page: number = 1, ids?: string): Promise<CoinSummary[]> => {
+  let url = `${API_BASE_URL}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=${page}&sparkline=false`;
+  if (ids) {
+    url = `${API_BASE_URL}/coins/markets?vs_currency=${currency}&ids=${ids}&sparkline=false`;
+  }
   return fetcher<CoinSummary[]>(url);
 };
 
