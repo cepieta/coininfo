@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 const API_BASE_URL = 'https://api.coingecko.com/api/v3';
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { coinId: string } }
+  request: Request,
+  { params }: any
 ) {
   const coinId = params.coinId;
   const { searchParams } = new URL(request.url);
