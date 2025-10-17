@@ -1,6 +1,6 @@
 'use client';
 
-import { createChart, UTCTimestamp } from 'lightweight-charts';
+import * as LightweightCharts from 'lightweight-charts';
 import { useEffect, useRef } from 'react';
 import { ChartDataPoint } from '@/types';
 
@@ -10,16 +10,14 @@ interface TradingChartProps {
 
 const TradingChart = ({ data }: TradingChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const chartRef = useRef<any>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const candlestickSeriesRef = useRef<any>(null);
+  const chartRef = useRef<LightweightCharts.IChartApi | null>(null);
+  const candlestickSeriesRef = useRef<LightweightCharts.ISeriesApi<'Candlestick'> | null>(null);
 
   useEffect(() => {
     if (!chartContainerRef.current || data.length === 0) return;
 
     if (!chartRef.current) {
-      chartRef.current = createChart(chartContainerRef.current, {
+      chartRef.current = LightweightCharts.createChart(chartContainerRef.current, {
         width: chartContainerRef.current.clientWidth,
         height: 400,
         layout: {
@@ -46,7 +44,7 @@ const TradingChart = ({ data }: TradingChartProps) => {
       });
     }
 
-    candlestickSeriesRef.current?.setData(data.map(d => ({...d, time: d.time as UTCTimestamp})));
+    candlestickSeriesRef.current?.setData(data.map(d => ({...d, time: d.time as LightweightCharts.UTCTimestamp})));
     
     const handleResize = () => {
       if (chartRef.current && chartContainerRef.current) {
