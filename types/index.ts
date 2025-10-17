@@ -20,6 +20,7 @@ export interface ChartDataPoint {
 export interface CoinDetail extends CoinSummary {
   description: {
     en: string;
+    ko: string;
   };
   market_data: {
     current_price: { [currency: string]: number };

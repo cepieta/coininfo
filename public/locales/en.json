@@ -1,0 +1,20 @@
+{
+  "search_placeholder": "Search for a coin...",
+  "failed_to_load_coins": "Failed to load coins list.",
+  "no_results_found": "No results found.",
+  "loading_dashboard": "Loading dashboard...",
+  "error_loading_data": "Error loading data. Please try again later.",
+  "watchlist_empty_title": "Your watchlist is empty.",
+  "watchlist_empty_subtitle": "Use the search bar above to find and add coins to your watchlist.",
+  "my_watchlist": "My Watchlist",
+  "loading_coin_details": "Loading coin details...",
+  "failed_to_load_coin_data": "Failed to load coin data. It might be an invalid coin ID.",
+  "no_data_available": "No data available for this coin.",
+  "what_is": "What is {coinName}?",
+  "dev_community_data": "Developer & Community Data",
+  "forks": "Forks",
+  "stars": "Stars",
+  "subscribers": "Subscribers",
+  "total_issues": "Total Issues",
+  "failed_to_load_chart": "Failed to load chart data."
+}

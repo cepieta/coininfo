@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import CoinSearch from '@/components/search/CoinSearch';
+import LanguageSelector from './LanguageSelector';
 
 const Header = () => {
   return (
@@ -14,6 +15,7 @@ const Header = () => {
         </div>
         <div className="flex items-center space-x-4">
           <CoinSearch />
+          <LanguageSelector />
         </div>
       </div>
     </header>

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import useSWR from 'swr';
 import { getCoinsList } from '@/services/coingecko';
 import { useWatchlist } from '@/hooks/useWatchlist';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface CoinListItem {
   id: string;
@@ -12,6 +13,7 @@ interface CoinListItem {
 }
 
 const CoinSearch = () => {
+  const { t } = useTranslation();
   const { data: coinsList, error } = useSWR('coinsList', getCoinsList);
   const { addCoin } = useWatchlist();
   const [query, setQuery] = useState('');
@@ -60,12 +62,12 @@ const CoinSearch = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onFocus={() => query.length > 1 && setIsOpen(true)}
-        placeholder="Search for a coin..."
+        placeholder={t('search_placeholder')}
         className="w-full px-4 py-2 text-white bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400"
       />
       {isOpen && (
         <div className="absolute z-10 w-full mt-1 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
-          {error && <div className="px-4 py-2 text-red-500">Failed to load coins list.</div>}
+          {error && <div className="px-4 py-2 text-red-500">{t('failed_to_load_coins')}</div>}
           {results.length > 0 ? (
             <ul>
               {results.map((coin) => (
@@ -80,7 +82,7 @@ const CoinSearch = () => {
             </ul>
           ) : (
             <div className="px-4 py-2 text-gray-400">
-              {query.length > 1 ? 'No results found.' : ''}
+              {query.length > 1 ? t('no_results_found') : ''}
             </div>
           )}
         </div>

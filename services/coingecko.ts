@@ -25,16 +25,17 @@ export const fetcher = async <T>(url: string): Promise<T> => {
 };
 
 // Specific API functions
-export const getCoinsMarkets = (currency: string = 'usd', page: number = 1, ids?: string): Promise<CoinSummary[]> => {
-  let url = `${API_BASE_URL}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=${page}&sparkline=false`;
+export const getCoinsMarkets = (locale: string = 'en', page: number = 1, ids?: string): Promise<CoinSummary[]> => {
+  const currency = 'usd';
+  let url = `${API_BASE_URL}/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=${page}&sparkline=false&locale=${locale}`;
   if (ids) {
-    url = `${API_BASE_URL}/coins/markets?vs_currency=${currency}&ids=${ids}&sparkline=false`;
+    url = `${API_BASE_URL}/coins/markets?vs_currency=${currency}&ids=${ids}&sparkline=false&locale=${locale}`;
   }
   return fetcher<CoinSummary[]>(url);
 };
 
-export const getCoinDetail = (id: string): Promise<CoinDetail> => {
-  const url = `${API_BASE_URL}/coins/${id}`;
+export const getCoinDetail = (id: string, locale: string = 'en'): Promise<CoinDetail> => {
+  const url = `${API_BASE_URL}/coins/${id}?localization=${locale === 'ko' ? 'ko' : 'false'}`;
   return fetcher<CoinDetail>(url);
 };
 
@@ -58,7 +59,7 @@ interface CoinListItem {
   name: string;
 }
 
-export const getCoinsList = (): Promise<CoinListItem[]> => {
-    const url = `${API_BASE_URL}/coins/list`;
+export const getCoinsList = (locale: string = 'en'): Promise<CoinListItem[]> => {
+    const url = `${API_BASE_URL}/coins/list?include_platform=false&locale=${locale}`;
     return fetcher<CoinListItem[]>(url);
 }
