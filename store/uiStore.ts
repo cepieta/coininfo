@@ -6,6 +6,6 @@ interface UiState {
 }
 
 export const useUiStore = create<UiState>((set) => ({
-  locale: 'en', // Default locale
+  locale: 'ko', // Default locale
   setLocale: (locale) => set({ locale }),
 }));

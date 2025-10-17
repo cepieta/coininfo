@@ -35,7 +35,10 @@ export const getCoinsMarkets = (locale: string = 'en', page: number = 1, ids?: s
 };
 
 export const getCoinDetail = (id: string, locale: string = 'en'): Promise<CoinDetail> => {
-  const url = `${API_BASE_URL}/coins/${id}?localization=${locale === 'ko' ? 'ko' : 'false'}`;
+  let url = `${API_BASE_URL}/coins/${id}`;
+  if (locale === 'ko') {
+    url += `?localization=ko`;
+  }
   return fetcher<CoinDetail>(url);
 };
 
