@@ -5,6 +5,7 @@ import useSWR from 'swr';
 import { getCoinsList } from '@/services/coingecko';
 import { useWatchlist } from '@/hooks/useWatchlist';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useUiStore } from '@/store/uiStore';
 
 interface CoinListItem {
   id: string;
@@ -14,7 +15,8 @@ interface CoinListItem {
 
 const CoinSearch = () => {
   const { t } = useTranslation();
-  const { data: coinsList, error } = useSWR('coinsList', getCoinsList);
+  const { locale } = useUiStore();
+  const { data: coinsList, error } = useSWR(['coinsList', locale], () => getCoinsList(locale));
   const { addCoin } = useWatchlist();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<CoinListItem[]>([]);
