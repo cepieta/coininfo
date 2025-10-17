@@ -10,8 +10,10 @@ interface TradingChartProps {
 
 const TradingChart = ({ data }: TradingChartProps) => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<any>(null); // Use any to bypass the type error
-  const candlestickSeriesRef = useRef<any>(null); // Use any to bypass the type error
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const chartRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const candlestickSeriesRef = useRef<any>(null);
 
   useEffect(() => {
     if (!chartContainerRef.current || data.length === 0) return;
