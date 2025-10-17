@@ -2,12 +2,17 @@ import { CoinDetail, CoinSummary, ChartDataPoint } from '@/types';
 
 const API_BASE_URL = 'https://api.coingecko.com/api/v3';
 
+// Custom Error class
+class FetchError extends Error {
+  info?: any;
+  status?: number;
+}
+
 // Generic fetcher for use with SWR
 export const fetcher = async <T>(url: string): Promise<T> => {
   const res = await fetch(url);
   if (!res.ok) {
-    const error = new Error('An error occurred while fetching the data.');
-    // Attach extra info to the error object.
+    const error = new FetchError('An error occurred while fetching the data.');
     try {
       error.info = await res.json();
     } catch (e) {
